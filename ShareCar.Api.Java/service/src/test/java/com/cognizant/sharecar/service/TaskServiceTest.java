@@ -64,6 +64,22 @@ public class TaskServiceTest {
         assertThat(tasks, hasSize(2));
     }
 
+    @Test
+    public void delete_AddOneTask_OneTaskIsDeleted(){
+        addTask(TaskStatus.DONE);
+        addTask(TaskStatus.OPEN);
+        addTask(TaskStatus.IN_PROGRESS);
+
+        List<Task> tasks = taskService.getAll(new GetAllQuery());
+
+        Task task = tasks.get(0);
+        taskService.delete(task);
+
+        List<Task> fetchedTasks = taskService.getAll(new GetAllQuery());
+
+        assertThat(fetchedTasks, hasSize(2));
+    }
+
     private void addTask(TaskStatus taskStatus) {
         Task task = new Task();
         task.setStatus(taskStatus);

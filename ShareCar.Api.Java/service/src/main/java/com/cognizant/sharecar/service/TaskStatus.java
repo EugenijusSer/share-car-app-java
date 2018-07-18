@@ -1,5 +1,5 @@
 package com.cognizant.sharecar.service;
 
 public enum TaskStatus {
-    OPEN, DONE
+    OPEN, IN_PROGRESS, DONE
 }
